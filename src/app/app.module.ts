@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AutocompleteProdutoComponent } from './autocomplete-produto/autocomplete-produto.component';
+import { NbThemeModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AutocompleteProdutoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NbThemeModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

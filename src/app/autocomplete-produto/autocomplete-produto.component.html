@@ -1,1 +1,25 @@
-<p>autocomplete-produto works!</p>
+<nb-form-field>
+    <input
+        style="color:#222b45"
+        type="text" 
+        placeholder="Buscar "
+        nbInput 
+        [formControl]="inputFormControlItem" 
+        [nbAutocomplete]="autoComplete" 
+        fullWidth
+    >
+    <button class="btn-sem-sombra" nbSuffix nbButton ghost (click)="limpar()"> 
+        <nb-icon icon="close-outline"></nb-icon> 
+    </button> 
+     
+    <nb-autocomplete 
+        #autoComplete
+        (selectedChange)="valorSelecionado($event)">
+        
+        <nb-option
+            *ngFor="let option of filteredControlOptions$ | async" 
+            [value]="option"> 
+            {{ option[propriedade] }} 
+        </nb-option>
+    </nb-autocomplete>
+</nb-form-field>
