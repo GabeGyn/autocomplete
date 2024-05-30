@@ -7,12 +7,19 @@ import { NbButtonModule, NbCardModule, NbContextMenuModule, NbDatepickerModule, 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { AutocompleteProdutoModule } from './autocomplete-produto/autocomplete-produto.module';
+import { CustomHttpClient } from './customHTTPClient';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    RouterModule,
+    CommonModule,
+    AutocompleteProdutoModule,
     BrowserModule,
     AppRoutingModule,
     NbThemeModule.forRoot(),
@@ -35,7 +42,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbWindowModule.forRoot(),
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [CustomHttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

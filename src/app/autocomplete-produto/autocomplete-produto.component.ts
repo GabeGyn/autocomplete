@@ -19,16 +19,16 @@ export class AutocompleteProdutoComponent {
   @Input() inputFormControlItem: FormControl = new FormControl();
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.inputFormControlItem)
+    //console.log(this.inputFormControlItem)
     if(this.inputFormControlItem){
-      console.log('teste')
+      //console.log('teste')
     }  
   }
 
   limpar(){
     this.inputFormControlItem.enable();
-    this.inputFormControlItem.setValue('');
-    this.selecionado.emit('')
+    this.inputFormControlItem.setValue(' ');
+    this.selecionado.emit(' ')
   }
 
   valorSelecionado(event: any){
