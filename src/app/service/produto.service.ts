@@ -10,8 +10,6 @@ export class ProdutoService {
   constructor(private client: CustomHttpClient) { }
 
   buscaRegistroProduto(descricao: string): Observable<any> {
-    console.log(descricao)
-
     return this.client.get(`/produto/buscarProdutoPorDescricao/${descricao}`);
-  } 
+  }
 }

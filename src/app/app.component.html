@@ -9,8 +9,6 @@
           <div class="col-md-12">
             <label for="text" class="label">Produto</label>
             <app-autocomplete-produto 
-              [filteredControlOptions$]="filtraProduto$" 
-              [inputFormControlItem]="inputProduto" 
               [listaSelecionados]="selecionaProduto" 
               [propriedade]="'descricao'"
               (selecionado)="selecionaProduto = $event">
