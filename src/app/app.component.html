@@ -8,12 +8,13 @@
         <div class="row">
           <div class="col-md-12">
             <label for="text" class="label">Produto</label>
-            <app-autocomplete-produto 
-              [listaSelecionados]="selecionaProduto" 
-              [propriedade]="'descricao'"
-              (selecionado)="selecionaProduto = $event">
+            <app-autocomplete-produto
+              (selecionado)="selecionaProduto = $event"
+              [options]="options"
+              [propriedade]="'descricao'">
             </app-autocomplete-produto> 
           </div>
+          <button nbButton (click)="teste()">Teste</button>
         </div>
       </nb-card-body>
     </nb-card>

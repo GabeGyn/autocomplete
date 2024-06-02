@@ -1,47 +1,44 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, debounceTime, startWith, switchMap } from 'rxjs';
-import { ProdutoService } from '../service/produto.service';
+import { Observable, map, of, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-autocomplete-produto',
   templateUrl: './autocomplete-produto.component.html',
-  styleUrls: ['./autocomplete-produto.component.css']
+  styleUrls: ['./autocomplete-produto.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteProdutoComponent {
-  
-  constructor(private produtoService: ProdutoService) {}
-  
+export class AutocompleteProdutoComponent implements AfterViewInit{
+  constructor() {}
+
+  @Input() options: any[]=[];
   @Output() selecionado: EventEmitter<any> = new EventEmitter();
-  
-  @Input() multiplosInputs: boolean = false;
-  @Input() listaSelecionados: any;
   @Input() propriedade:any
+  
+  filteredOptions$: Observable<string[]>= new Observable();
+  inputFormControl: FormControl=new FormControl;
+  
+  ngAfterViewInit() {
 
-  filteredControlOptions$: Observable<any[]> = new Observable; 
-  inputFormControlItem: FormControl = new FormControl();
-  selecionaProduto: any;
+    this.filteredOptions$ = of(this.options);
+    this.inputFormControl = new FormControl();
 
-  ngOnInit() {
-    this.filteredControlOptions$ = this.inputFormControlItem.valueChanges
-    .pipe(startWith(' '), 
-    debounceTime(500),
-    switchMap((valorBuscado: any) => {
-      return this.produtoService.buscaRegistroProduto(encodeURIComponent(valorBuscado));  
-    }));
+    this.filteredOptions$ = this.inputFormControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(filterString => this.filter(filterString)),
+    );
   }
 
-  limpar(){
-    this.inputFormControlItem.enable();
-    this.inputFormControlItem.setValue(' ');
-    this.selecionado.emit(' ')
+  private filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(optionValue => optionValue[this.propriedade].toLowerCase().includes(filterValue));
   }
 
   valorSelecionado(event: any){
     if(event && event[this.propriedade]){
-      this.inputFormControlItem.setValue((event[this.propriedade]).toString());
-      this.selecionado.emit(event)
-      this.inputFormControlItem.disable()
-    } 
-  } 
+      this.inputFormControl.setValue((event[this.propriedade]).toString());
+      this.selecionado.emit(event);
+    }
+  }
 }

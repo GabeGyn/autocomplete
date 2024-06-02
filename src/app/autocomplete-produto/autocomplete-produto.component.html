@@ -1,25 +1,23 @@
 <nb-form-field>
-    <input
+    <input 
+        #autoInput
         style="color:#222b45"
-        type="text" 
-        placeholder="Buscar "
-        nbInput 
-        [formControl]="inputFormControlItem" 
-        [nbAutocomplete]="autoComplete" 
-        fullWidth
+        nbInput
+        type="text"
+        [formControl]="inputFormControl"
+        placeholder="Buscar"
+        [nbAutocomplete]="auto"
     >
-    <button class="btn-sem-sombra" nbSuffix nbButton ghost (click)="limpar()"> 
+
+    <button class="btn-sem-sombra" nbSuffix nbButton ghost> 
         <nb-icon icon="close-outline"></nb-icon> 
     </button> 
-     
-    <nb-autocomplete 
-        #autoComplete
-        (selectedChange)="valorSelecionado($event)">
-        
-        <nb-option
-            *ngFor="let option of filteredControlOptions$ | async" 
-            [value]="option"> 
-            {{ option[propriedade] }} 
-        </nb-option>
+
+    <nb-autocomplete #auto (selectedChange)="valorSelecionado($event)">
+
+      <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+        {{ option[propriedade] }}
+      </nb-option>
+
     </nb-autocomplete>
 </nb-form-field>
