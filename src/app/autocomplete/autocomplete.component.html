@@ -1,0 +1,19 @@
+<nb-form-field>
+    <input 
+      #autoInput
+      style="color:#222b45"
+      nbInput
+      type="text"
+      [formControl]="inputFormControl"
+      placeholder="Buscar"
+      [nbAutocomplete]="auto"
+    >
+
+    <nb-autocomplete #auto (selectedChange)="valorSelecionado($event)">
+
+      <nb-option *ngFor="let option of filteredOptions$ | async" [value]="option">
+        {{ option[propriedade] }}
+      </nb-option>
+
+    </nb-autocomplete>
+</nb-form-field>

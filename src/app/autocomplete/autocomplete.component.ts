@@ -3,20 +3,20 @@ import { FormControl } from '@angular/forms';
 import { Observable, map, of, startWith } from 'rxjs';
 
 @Component({
-  selector: 'app-autocomplete-produto',
-  templateUrl: './autocomplete-produto.component.html',
-  styleUrls: ['./autocomplete-produto.component.css'],
+  selector: 'app-autocomplete',
+  templateUrl: './autocomplete.component.html',
+  styleUrls: ['./autocomplete.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AutocompleteProdutoComponent implements AfterViewInit{
+export class AutocompleteComponent implements AfterViewInit{
   constructor() {}
 
   @Input() options: any[]=[];
+  @Input() propriedade: any
   @Output() selecionado: EventEmitter<any> = new EventEmitter();
-  @Input() propriedade:any
-  
-  filteredOptions$: Observable<string[]>= new Observable();
-  inputFormControl: FormControl=new FormControl;
+
+  filteredOptions$: Observable<string[]> = new Observable();
+  inputFormControl: FormControl = new FormControl;
   
   ngAfterViewInit() {
 
@@ -26,11 +26,13 @@ export class AutocompleteProdutoComponent implements AfterViewInit{
     this.filteredOptions$ = this.inputFormControl.valueChanges
     .pipe(
       startWith(''),
-      map(filterString => this.filter(filterString)),
+      map((filterString) => {
+        return typeof filterString=='string'?this.filter(filterString):[]
+      }),
     );
   }
 
-  private filter(value: string): string[] {
+  private filter(value: any): any[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(optionValue => optionValue[this.propriedade].toLowerCase().includes(filterValue));
   }

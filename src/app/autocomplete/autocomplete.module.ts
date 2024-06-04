@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AutocompleteProdutoComponent } from './autocomplete-produto.component';
 import { NbAutocompleteModule, NbInputModule, NbFormFieldModule, NbButtonModule, NbIconModule, NbSelectModule } from '@nebular/theme';
+import { AutocompleteComponent } from './autocomplete.component';
 
 @NgModule({
-  declarations: [ AutocompleteProdutoComponent ],
+  declarations: [ AutocompleteComponent ],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,6 +18,6 @@ import { NbAutocompleteModule, NbInputModule, NbFormFieldModule, NbButtonModule,
     NbIconModule,
     NbSelectModule
   ],
-  exports: [AutocompleteProdutoComponent]
+  exports: [AutocompleteComponent]
 })
-export class AutocompleteProdutoModule { }
+export class AutocompleteModule { }

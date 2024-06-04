@@ -7,10 +7,10 @@ import { NbButtonModule, NbCardModule, NbContextMenuModule, NbDatepickerModule, 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { AutocompleteProdutoModule } from './autocomplete-produto/autocomplete-produto.module';
 import { CustomHttpClient } from './customHTTPClient';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AutocompleteModule } from './autocomplete/autocomplete.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule,
     CommonModule,
-    AutocompleteProdutoModule,
+    AutocompleteModule,
     BrowserModule,
     AppRoutingModule,
     NbThemeModule.forRoot(),

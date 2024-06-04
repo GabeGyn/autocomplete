@@ -8,11 +8,11 @@
         <div class="row">
           <div class="col-md-12">
             <label for="text" class="label">Produto</label>
-            <app-autocomplete-produto
+            <app-autocomplete
               (selecionado)="selecionaProduto = $event"
               [options]="options"
               [propriedade]="'descricao'">
-            </app-autocomplete-produto> 
+            </app-autocomplete> 
           </div>
           <button nbButton (click)="teste()">Teste</button>
         </div>

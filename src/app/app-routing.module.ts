@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   {path: '', component: AppComponent, children:[
     {
-      path:'autocomplete-produto',
-      loadChildren:() => import('src/app/autocomplete-produto/autocomplete-produto.module').then(
-        (m) => m.AutocompleteProdutoModule
+      path:'autocomplete',
+      loadChildren:() => import('src/app/autocomplete/autocomplete.module').then(
+        (m) => m.AutocompleteModule
       ),
     },
   ]}
